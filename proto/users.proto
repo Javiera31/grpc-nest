@@ -1,0 +1,47 @@
+syntax = 'proto3'
+
+package users;
+
+service UsersService { 
+    rpc CreateUser {CreateUserRequest} returns (CreateUserResponse) {}
+    rpc GetUser {Empty} returns (GetUserResponse) {}
+    rpc GetUserById {GetUserByIdRequest} returns (GetUserByIdResponse ) {}
+}
+
+//hay que poner los tipos de datos. En message se definen
+
+message Error {
+    int32 code = 1;
+    string message = 2;
+}
+
+message Empty ()
+
+message User{
+    //Details en caso de que sea objeto
+    string id = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message CreateUserrequest{//lo que necesita
+    User user
+}
+
+message CreateUserResponse{
+
+}
+
+message GetUsersResponse{
+    repeated User data = 1;
+}
+
+message GetUserByIdRequest{
+    string id = 1;
+}
+
+message GetUserByIdResponse{
+    User user = 1;
+    Error error = 2;
+}
+
